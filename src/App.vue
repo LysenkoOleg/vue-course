@@ -18,6 +18,9 @@ import PostForm from '@/components/PostForm.vue';
 	 methods: {
 		 updatePosts(post) {
 			 this.posts.push(post)
+		 },
+		 removePost(post) {
+			 this.posts = this.posts.filter(p => p.id !== post.id)
 		 }
 	 }
  }
@@ -26,7 +29,7 @@ import PostForm from '@/components/PostForm.vue';
 <template>
 	<div class='app'>
 		<PostForm @create='updatePosts'/>
-		<PostList :data='{posts}'/>
+		<PostList @remove='removePost' :data='{posts}'/>
 	</div>
 </template>
 
