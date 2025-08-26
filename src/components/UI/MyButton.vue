@@ -1,0 +1,22 @@
+<template>
+	<button>
+		<slot></slot>
+	</button>
+</template>
+
+<script>
+export default {
+
+};
+</script>
+
+<style scoped>
+.btn {
+	margin-top: 15px;
+	background-color: transparent;
+	color: teal;
+	border: 1px solid teal;
+	padding: 10px;
+	cursor: pointer;
+}
+</style>
