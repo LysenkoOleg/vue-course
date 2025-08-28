@@ -1,12 +1,14 @@
 <template>
-	<div v-if='data.posts.length > 0'>
+	<div v-if='posts.length > 0' class='post-list'>
 		<h3>Список постов</h3>
-		<PostItem
-			v-for='post in data.posts'
-			:post='post'
-			:key="post.id"
-			@remove="$emit('remove', post)"
-		/>
+		<transition-group name='post-list' tag='ul'>
+			<PostItem
+				v-for='post in posts'
+				:post='post'
+				:key="post.id"
+				@remove="$emit('remove', post)"
+			/>
+		</transition-group>
 	</div>
 	<h2 v-else style='color: red'>Список постов пуст</h2>
 </template>
@@ -19,15 +21,26 @@ export default {
 		PostItem
 	},
 	props: {
-		data: {
+		posts: {
+			type: Array,
 			required: true,
-			posts: {
-				type: Array,
-			}
 		}
 	}
 };
 </script>
 
 <style scoped>
+.post-list-enter-active,
+.post-list-leave-active {
+	transition: all 0.4s ease;
+}
+.post-list-enter-from,
+.post-list-leave-to {
+	opacity: 0;
+	transform: translateY(30px);
+}
+
+.post-list-move {
+	transition: transform 0.4s ease
+}
 </style>
